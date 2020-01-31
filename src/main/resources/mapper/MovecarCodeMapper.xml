@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haiyu.manager.dao.MovecarCodeMapper">
+  <resultMap id="BaseResultMap" type="com.haiyu.manager.dto.MovecarCodeDTO">
+    <id column="code" jdbcType="VARCHAR" property="code" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="car_no" jdbcType="VARCHAR" property="carNo" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="supplier" jdbcType="TINYINT" property="supplier" />
+    <result column="active_time" jdbcType="TIMESTAMP" property="activeTime" />
+    <result column="data_status" jdbcType="TINYINT" property="dataStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    code, account, phone, car_no, `status`, supplier, active_time, data_status, create_time, 
+    create_by, update_time, update_by
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from movecar_code
+    where code = #{code,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByCondition" parameterType="com.haiyu.manager.dto.MovecarSearchDTO"
+  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from movecar_code
+    where 1=1
+    <if test="code!=null and code!=''">
+      and code = #{code}
+    </if>
+    <if test="phone!=null and phone!=''">
+      and phone = #{phone}
+    </if>
+    <if test="carNo!=null and carNo!=''">
+      and car_no = #{carNo}
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from movecar_code
+    where code = #{code,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="code" keyProperty="code" parameterType="com.haiyu.manager.dto.MovecarCodeDTO" useGeneratedKeys="true">
+    insert into movecar_code (account, phone, car_no, 
+      `status`, supplier, active_time, 
+      data_status, create_time, create_by, 
+      update_time, update_by)
+    values (#{account,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, #{carNo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{supplier,jdbcType=TINYINT}, #{activeTime,jdbcType=TIMESTAMP}, 
+      #{dataStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="code" keyProperty="code" parameterType="com.haiyu.manager.dto.MovecarCodeDTO" useGeneratedKeys="true">
+    insert into movecar_code
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="carNo != null">
+        car_no,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="supplier != null">
+        supplier,
+      </if>
+      <if test="activeTime != null">
+        active_time,
+      </if>
+      <if test="dataStatus != null">
+        data_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="carNo != null">
+        #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="supplier != null">
+        #{supplier,jdbcType=TINYINT},
+      </if>
+      <if test="activeTime != null">
+        #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataStatus != null">
+        #{dataStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haiyu.manager.dto.MovecarCodeDTO">
+    update movecar_code
+    <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="carNo != null">
+        car_no = #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="supplier != null">
+        supplier = #{supplier,jdbcType=TINYINT},
+      </if>
+      <if test="activeTime != null">
+        active_time = #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dataStatus != null">
+        data_status = #{dataStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateStatus" parameterType="com.haiyu.manager.dto.MovecarCodeDTO">
+    update movecar_code
+    set status = #{status}
+    where code = #{code}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.haiyu.manager.dto.MovecarCodeDTO">
+    update movecar_code
+    set account = #{account,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      car_no = #{carNo,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      supplier = #{supplier,jdbcType=TINYINT},
+      active_time = #{activeTime,jdbcType=TIMESTAMP},
+      data_status = #{dataStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=VARCHAR}
+    where code = #{code,jdbcType=VARCHAR}
+  </update>
+</mapper>
