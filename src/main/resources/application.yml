@@ -1,5 +1,5 @@
 server:
-  port: 8102
+  port: 8080
 
 
 spring:
@@ -15,11 +15,13 @@ spring:
       max-active: 20
       test-on-borrow: true
       driver-class-name: com.mysql.jdbc.Driver
-#  thymeleaf:
-#      cache: false
-#      mode: HTML5
-#      encoding: UTF-8
-#      content-type: text/html
+  thymeleaf:
+      cache: false
+      mode: HTML5
+      encoding: UTF-8
+      prefix: classpath:/templates/
+      servlet:
+            content-type: text/html
 
 mybatis:
     mapper-locations: classpath:mapper/*.xml

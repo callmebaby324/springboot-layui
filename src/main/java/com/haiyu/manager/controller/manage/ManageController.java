@@ -37,7 +37,7 @@ public class ManageController {
     @RequestMapping("/codeManage")
     public String toPage() {
         log.info("进入角色管理");
-        return "/manage/codeManage";
+        return "manage/codeManage";
     }
 
     /**
